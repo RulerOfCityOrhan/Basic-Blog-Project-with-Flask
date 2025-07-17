@@ -1,0 +1,22 @@
+{% extends "layout.html"  %}
+
+{% block title %}
+{% if article %}
+{{ article.title }}
+{%else%}
+No such article
+{% endif %}
+{% endblock  %}
+
+
+{% block body %}
+{% if article  %}
+<h3>{{ article.title }}</h3>
+<hr>
+<p>Author : {{ article.author }}</p>
+<hr>
+<p style="white-space: pre-line;">{{ article.content }}</p>
+{% else %}
+<div class="alert alert-warning">There are no articles with this ID.</div>
+{% endif %}
+{% endblock  %}

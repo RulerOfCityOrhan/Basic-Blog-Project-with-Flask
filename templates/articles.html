@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Articles
+{% endblock  %}
+
+{% block body %}
+<h3>Articles</h3>
+<hr>
+<div class="list-group">
+{% for article in articles %}
+    <a href="/article/{{article.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{article.title}}</h5>
+    </div>
+    {% if article.content|length > 50 %}
+    <p class="mb-1">{{article.content | truncate(200, False, '...')}}</p>
+    {% else %}
+    <p class="mb-1">{{article.content}}...</p>
+    {% endif %}
+    <small>{{article.author}}</small>
+    </a>
+{% endfor %}
+</div>
+{% endblock  %}

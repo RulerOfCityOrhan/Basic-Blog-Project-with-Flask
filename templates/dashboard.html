@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Dashboard
+{% endblock  %}
+
+{% block body %}
+<h3>Dashboard</h3>
+<small>Welcome, {{session.username}}.</small>
+<hr>
+<a href="/addarticle" class="btn btn-danger">Add Article</a>
+<hr>
+{% if articles %}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Date</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for article in articles %}
+        <tr>
+            <th scope="row">{{article.id}}</th>
+            <th><a href="/article/{{article.id}}" style = "text-decoration: none;color: inherit;">{{article.title}}</a></th>
+            <th>{{article.author}}</th>
+            <th>{{article.created_date}}</th>
+            <th><a href="/edit/{{article.id}}" class="btn btn-primary">Edit</a></th>
+            <th><a href="/delete/{{article.id}}" class="btn btn-danger">Delete</a></th>
+        </tr>
+        {% endfor  %}
+    </tbody>
+</table>
+
+{% else %}
+<div class="alert alert-warning"><p>You have not posted any articles.</p></div>
+{% endif %}
+{% endblock  %}
